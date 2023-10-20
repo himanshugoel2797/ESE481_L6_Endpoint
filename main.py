@@ -21,8 +21,7 @@ def msg_process(msg, tstamp):
     # {
     #    "name": "<Full name>",
     #    "id": "<ID number>",
-    #    "temp_f": "<Temperature in Fahrenheit>",
-    #    "light_level": "<Light level string>"
+    #    "temp_f": "<Temperature in Fahrenheit>"
     # }
 
     # Validate the message by checking against the schema in schema.json

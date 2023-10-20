@@ -5,7 +5,6 @@ Prototype AWS IoT HTTPS Endpoint script for testing that students have correctly
 ## Python Packages needed
 
 - flask
-- json
 - jsonschema
 
 ## Setup instructions

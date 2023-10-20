@@ -10,15 +10,11 @@
       },
       "temp_f": {
         "type": "integer"
-      },
-      "light_level": {
-        "type": "string"
       }
     },
     "required": [
       "id",
       "name",
-      "temp_f",
-      "light_level"
+      "temp_f"
     ]
   }
