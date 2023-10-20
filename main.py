@@ -9,7 +9,6 @@ import time
 
 app = Flask(__name__)
 
-msgs = {}
 valid_msgs_needed = 3 # Number of valid messages needed to consider the task done
 
 def msg_process(msg, tstamp):
@@ -18,6 +17,9 @@ def msg_process(msg, tstamp):
     except:
         print("Invalid JSON received: {}".format(msg), file='error.log')
         return
+
+    with open('msgs.json', 'r') as f:
+        msgs = json.load(f)
 
     # Receive message with the following format:
     # {
@@ -79,6 +81,9 @@ def results():
     # If the task is not done, return a message saying so
     # If the task is done, return the results in a table
 
+    with open('msgs.json', 'r') as f:
+        msgs = json.load(f)
+
     # Check arguments for student ID if provided
     id = request.args.get('id')
     if id is not None:
@@ -108,6 +113,9 @@ def results_json():
     # If the task is not done, return a message saying so
     # If the task is done, return the results in JSON format
 
+    with open('msgs.json', 'r') as f:
+        msgs = json.load(f)
+
     # Check arguments for student ID if provided
     id = request.args.get('id')
     if id is not None:
@@ -134,12 +142,6 @@ def clear_results():
     return "Results cleared"
 
 if __name__ == '__main__':
-    # Load the messages from the file
-    try:
-        with open('msgs.json', 'r') as f:
-            msgs = json.load(f)
-    except:
-        pass
     app.run(
         host = "0.0.0.0",
         port = 5000,
