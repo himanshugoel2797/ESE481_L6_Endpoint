@@ -95,7 +95,32 @@ def results():
     html += "</table>"
     return html
 
+@app.route('/results_json', methods = ['GET'])
+def results_json():
+    # Return the results in JSON format
+    # If the task is not done, return a message saying so
+    # If the task is done, return the results in JSON format
+
+    # Check arguments for student ID if provided
+    id = request.args.get('id')
+    if id is not None:
+        if id in msgs:
+            return json.dumps(msgs[id], indent=4)
+        else:
+            return "No results yet"
+
+    if len(msgs) == 0:
+        return "No results yet"
+
+    return json.dumps(msgs, indent=4)
+
 if __name__ == '__main__':
+    # Load the messages from the file
+    try:
+        with open('msgs.json', 'r') as f:
+            msgs = json.load(f)
+    except:
+        pass
     app.run(
         host = "0.0.0.0",
         port = 5000,
