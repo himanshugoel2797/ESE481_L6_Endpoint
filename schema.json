@@ -9,7 +9,7 @@
         "type": "string"
       },
       "temp_f": {
-        "type": "integer"
+        "type": "number"
       }
     },
     "required": [
