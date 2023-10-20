@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "temp_f": {
+        "type": "integer"
+      },
+      "light_level": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "temp_f",
+      "light_level"
+    ]
+  }
