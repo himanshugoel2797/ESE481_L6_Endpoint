@@ -81,7 +81,12 @@ def results():
     id = request.args.get('id')
     if id is not None:
         if id in msgs:
-            return json.dumps(msgs[id], indent=4)
+            # Format the results in a table
+            html = "<table><tr><th>Timestamp</th><th>Valid</th><th>Message</th></tr>"
+            for msg in msgs[id]:
+                html += "<tr><td>{}</td><td>{}</td><td>{}</td></tr>".format(msg['timestamp'], msg['valid'], json.dumps(msg['json'], indent=4))
+            html += "</table>"
+            return html
         else:
             return "No results yet"
 
