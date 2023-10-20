@@ -4,6 +4,8 @@ from flask import Flask, request
 import requests
 import json
 import jsonschema
+import os
+import time
 
 app = Flask(__name__)
 
@@ -118,6 +120,18 @@ def results_json():
         return "No results yet"
 
     return json.dumps(msgs, indent=4)
+
+@app.route('/clear_results', methods = ['GET'])
+def clear_results():
+    # Backup existing results with current timestamp
+    os.system('cp msgs.json msgs_{}.json.bak'.format(int(time.time())))
+
+    # Clear the results
+    # Return a message saying so
+    msgs = {}
+    with open('msgs.json', 'w') as f:
+        json.dump(msgs, f)
+    return "Results cleared"
 
 if __name__ == '__main__':
     # Load the messages from the file
