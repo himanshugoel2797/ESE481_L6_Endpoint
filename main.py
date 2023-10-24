@@ -85,7 +85,7 @@ def results():
         msgs = json.load(f)
 
     # Check arguments for student ID if provided
-    id = str(request.args.get('id'))
+    id = request.args.get('id')
     if id is not None:
         if id in msgs:
             # Format the results in a table
@@ -117,7 +117,7 @@ def results_json():
         msgs = json.load(f)
 
     # Check arguments for student ID if provided
-    id = str(request.args.get('id'))
+    id = request.args.get('id')
     if id is not None:
         if id in msgs:
             return json.dumps(msgs[id], indent=4)
